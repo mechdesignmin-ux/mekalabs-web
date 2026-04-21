@@ -1,215 +1,649 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEKA LABS | 메카랩스</title>
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <style>
-        /* 디자인(CSS) 설정 */
-        :root {
-            --bg-color: #0a0a0a; /* 아주 어두운 검은색 배경 */
-            --text-main: #ffffff; /* 기본 글씨색 (흰색) */
-            --text-muted: #888888; /* 설명글 색상 (회색) */
-            --accent-blue: #3b5bff; /* 강조용 파란색 */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MEKA LABS</title>
+  <style>
+    :root {
+      --white: #ffffff;
+      --blue: #1E5EFF;
+      --light-blue: #EFF6FF;
+      --navy: #0F172A;
+      --text: #334155;
+      --line: #dbeafe;
+    }
 
-        body {
-            font-family: 'Pretendard', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* 1. 맨 위 상단 메뉴바 */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-        }
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .logo-icon {
-            background-color: var(--accent-blue);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 2px;
-            font-size: 18px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: var(--text-main);
-        }
-        .btn-quote {
-            border: 1px solid var(--accent-blue);
-            color: var(--text-main);
-            background: transparent;
-            padding: 10px 24px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .btn-quote:hover {
-            background-color: var(--accent-blue);
-        }
+    body {
+      font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      line-height: 1.6;
+    }
 
-        /* 2. 메인 대문  */
-        .hero {
-            padding: 80px 5% 100px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .hero-subtitle {
-            color: var(--accent-blue);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .hero-subtitle::before {
-            content: "";
-            display: inline-block;
-            width: 40px;
-            height: 1px;
-            background-color: var(--accent-blue);
-        }
-        .hero h1 {
-            font-size: 75px;
-            font-weight: 800;
-            line-height: 1.15;
-            margin: 0 0 30px 0;
-            letter-spacing: -2px;
-        }
-        .text-blue {
-            color: var(--accent-blue);
-        }
-        .hero-desc {
-            color: var(--text-muted);
-            font-size: 16px;
-            line-height: 1.7;
-            max-width: 500px;
-            margin-bottom: 50px;
-            word-break: keep-all; /*줄바꿈 */
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        /* 3. 버튼 묶음 */
-        .button-group {
-            display: flex;
-            gap: 15px;
-        }
-        .btn-primary {
-            background-color: var(--accent-blue);
-            color: white;
-            border: none;
-            padding: 18px 35px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-muted);
-            border: 1px solid #333;
-            padding: 18px 35px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .btn-secondary:hover {
-            border-color: var(--text-muted);
-            color: var(--text-main);
-        }
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+    }
 
-        /* 4. 두 번째 압도적인 퍼포먼스 섹션 */
-        .performance {
-            padding: 50px 5% 100px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        .performance h2 {
-            font-size: 38px;
-            font-weight: 800;
-            margin: 0 0 20px 0;
-            letter-spacing: -1.5px;
-        }
-        /* 우측 하단 연한 글씨  */
-        .bg-text {
-            position: absolute;
-            right: 0;
-            top: 10px;
-            font-size: 140px;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
-            margin: 0;
-            letter-spacing: 5px;
-            z-index: -1;
-        }
-    </style>
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #eef2ff;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: 0.5px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+    }
+
+    .btn-secondary {
+      border: 1.5px solid var(--blue);
+      color: var(--blue);
+      background: var(--white);
+    }
+
+    .hero {
+      padding: 90px 0 80px;
+      background: linear-gradient(to bottom, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--light-blue);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.18;
+      margin-bottom: 18px;
+      color: var(--navy);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text);
+      margin-bottom: 30px;
+      max-width: 620px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid #e5edff;
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: 0 20px 50px rgba(30, 94, 255, 0.08);
+    }
+
+    .mock-box {
+      background: linear-gradient(135deg, var(--light-blue), #ffffff);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mock-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .grid-preview {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .preview-item {
+      background: var(--white);
+      border: 1px solid #dbeafe;
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 90px;
+    }
+
+    .preview-item strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .preview-item span {
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-light {
+      background: var(--light-blue);
+    }
+
+    .section-blue {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 16px;
+      font-size: 34px;
+    }
+
+    .section-desc {
+      text-align: center;
+      color: var(--text);
+      max-width: 760px;
+      margin: 0 auto 44px;
+      font-size: 17px;
+    }
+
+    .section-blue .section-desc,
+    .section-blue .card p,
+    .section-blue .card li {
+      color: rgba(255,255,255,0.88);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid #e5edff;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--navy);
+    }
+
+    .card p {
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .section-blue .card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+    }
+
+    .section-blue .card h3 {
+      color: var(--white);
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      background: var(--white);
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 24px 18px;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .step h4 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .step p {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .portfolio-item {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #dbeafe;
+    }
+
+    .portfolio-thumb {
+      height: 180px;
+      background: linear-gradient(135deg, #dbeafe, #ffffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .portfolio-body {
+      padding: 18px;
+    }
+
+    .portfolio-body h4 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .portfolio-body p {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .contact-info,
+    .contact-form {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 30px;
+      border: 1px solid #dbeafe;
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .contact-info p {
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.88);
+      padding: 38px 0;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-title {
+      color: var(--white);
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-wrap,
+      .contact-wrap,
+      .card-grid,
+      .portfolio-grid,
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="container nav">
+      <div class="logo">MEKA LABS</div>
+      <nav class="menu">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#service">SERVICE</a>
+        <a href="#portfolio">PORTFOLIO</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+      <a href="#contact" class="btn btn-primary">작업 문의하기</a>
+    </div>
+  </header>
 
-    <nav class="navbar">
-        <div class="logo">
-            <span class="logo-icon">M</span> MEKA LABS
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-wrap">
+        <div>
+          <div class="eyebrow">Design & 3D Printing Service</div>
+          <h1>설계부터 3D 프린팅까지,<br />한 번에</h1>
+          <p>
+            아이디어를 실제 결과물로 빠르고 정확하게 구현합니다.<br />
+            설계 외주, 시제품 제작, 3D 프린팅까지 효율적으로 지원합니다.
+          </p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">작업 문의하기</a>
+            <a href="#portfolio" class="btn btn-secondary">포트폴리오 보기</a>
+          </div>
         </div>
-        <div class="nav-links">
-            <a href="#">ABOUT</a>
-            <a href="#">FEATURES</a>
-            <a href="#">PROCESS</a>
-            <button class="btn-quote">QUOTE</button>
-        </div>
-    </nav>
 
-    <header class="hero">
-        <div class="hero-subtitle">NEXT-GEN MANUFACTURING</div>
-        <h1>
-            도면이 없어도<br>
-            괜찮습니다.<br>
-            아이디어를<br>
-            <span class="text-blue">현실로</span> 만듭니다.
-        </h1>
-        <p class="hero-desc">
-            MEKA LABS는 최첨단 듀얼 노즐 3D 프린터와 AI 모델링 기술을 활용하여 초정밀, 초고속 원스톱 서비스를 제공합니다. 스케치 한 장으로 시작되는 완벽한 제조.
-        </p>
-        <div class="button-group">
-            <button class="btn-primary">무료 견적/상담 신청하기 →</button>
-            <button class="btn-secondary">서비스 알아보기</button>
+        <div class="hero-card">
+          <div class="mock-box">
+            <div>
+              <div class="mock-top">
+                <span>Project Preview</span>
+                <span>MEKA LABS</span>
+              </div>
+              <div class="grid-preview">
+                <div class="preview-item">
+                  <strong>2D Drawing</strong>
+                  <span>실무에 맞는 도면 작업</span>
+                </div>
+                <div class="preview-item">
+                  <strong>3D Modeling</strong>
+                  <span>정확한 형상 설계</span>
+                </div>
+                <div class="preview-item">
+                  <strong>Prototype</strong>
+                  <span>시제품 빠른 출력</span>
+                </div>
+                <div class="preview-item">
+                  <strong>Consulting</strong>
+                  <span>제작 방향 상담</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:22px; color:#475569; font-size:14px;">
+              정확한 설계, 효율적인 제작, 빠른 대응
+            </div>
+          </div>
         </div>
-    </header>
-
-    <section class="performance">
-        <h2 class="bg-text">PRO</h2>
-        <h2>압도적인 <span class="text-blue">퍼포먼스</span></h2>
-        <p class="hero-desc">
-            취미용이 아닙니다. 실제 산업 현장에서 요구하는 정밀도와 내구성을 충족하는 프리미엄 제조 서비스입니다.
-        </p>
+      </div>
     </section>
 
+    <section class="section-light" id="about">
+      <div class="container">
+        <h2 class="section-title">About MEKA LABS</h2>
+        <p class="section-desc">
+          MEKA LABS는 설계 외주와 3D 프린팅 서비스를 제공하는 업체입니다.
+          아이디어 단계부터 실제 제작까지, 목적에 맞는 결과물을 빠르고 꼼꼼하게 지원합니다.
+        </p>
+      </div>
+    </section>
+
+    <section id="service">
+      <div class="container">
+        <h2 class="section-title">Our Service</h2>
+        <p class="section-desc">
+          설계와 제작을 따로 맡길 필요 없이, 필요한 작업을 한 번에 진행할 수 있도록 지원합니다.
+        </p>
+        <div class="card-grid">
+          <div class="card">
+            <h3>설계 외주</h3>
+            <p>2D 도면 작업, 3D 모델링, 부품 설계 등 실무에 바로 적용할 수 있는 설계 결과물을 제공합니다.</p>
+          </div>
+          <div class="card">
+            <h3>3D 프린팅</h3>
+            <p>시제품 출력, 샘플 제작, 소량 출력 등 용도에 맞는 효율적인 3D 프린팅 서비스를 제공합니다.</p>
+          </div>
+          <div class="card">
+            <h3>제작 상담</h3>
+            <p>아이디어 검토부터 제작 가능 여부 확인까지 작업 목적에 맞는 방향으로 함께 상담합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-blue">
+      <div class="container">
+        <h2 class="section-title">Why MEKA LABS</h2>
+        <p class="section-desc">
+          빠른 대응, 정확한 작업, 원스톱 진행으로 더 실용적인 결과물을 제공합니다.
+        </p>
+        <div class="card-grid">
+          <div class="card">
+            <h3>빠른 대응</h3>
+            <p>문의부터 작업 진행까지 신속하게 대응합니다.</p>
+          </div>
+          <div class="card">
+            <h3>정확한 작업</h3>
+            <p>목적과 용도에 맞는 결과물을 꼼꼼하게 제공합니다.</p>
+          </div>
+          <div class="card">
+            <h3>원스톱 진행</h3>
+            <p>설계와 3D 프린팅을 한 번에 진행할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Work Process</h2>
+        <p class="section-desc">
+          문의부터 결과물 전달까지, 이해하기 쉬운 방식으로 작업을 진행합니다.
+        </p>
+        <div class="process">
+          <div class="step">
+            <div class="step-number">01</div>
+            <h4>문의</h4>
+            <p>작업 내용과 참고 자료를 전달해 주세요.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">02</div>
+            <h4>검토</h4>
+            <p>제작 가능 여부와 작업 범위를 확인합니다.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">03</div>
+            <h4>견적</h4>
+            <p>비용과 일정을 안내드립니다.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">04</div>
+            <h4>진행</h4>
+            <p>설계 또는 출력 작업을 진행합니다.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">05</div>
+            <h4>전달</h4>
+            <p>완성된 파일 또는 출력물을 전달드립니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-light" id="portfolio">
+      <div class="container">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-desc">
+          다양한 설계 및 3D 프린팅 작업 경험을 바탕으로 목적에 맞는 결과물을 제공합니다.
+        </p>
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">3D Modeling</div>
+            <div class="portfolio-body">
+              <h4>부품 설계</h4>
+              <p>실제 제작과 조립을 고려한 부품 설계 작업</p>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Prototype</div>
+            <div class="portfolio-body">
+              <h4>시제품 출력</h4>
+              <p>형상 확인과 테스트를 위한 빠른 시제품 제작</p>
+            </div>
+          </div>
+          <div class="portfolio-item">
+            <div class="portfolio-thumb">Drawing</div>
+            <div class="portfolio-body">
+              <h4>도면 작업</h4>
+              <p>실무에 활용할 수 있는 2D 도면 정리 및 수정</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-desc">
+          작업 문의는 편하게 남겨주세요. 내용 확인 후 빠르게 답변드리겠습니다.
+        </p>
+        <div class="contact-wrap">
+          <div class="contact-info">
+            <h3>문의 안내</h3>
+            <p>도면, 사진, 스케치, 참고 이미지가 있으면 더 정확한 상담이 가능합니다.</p>
+            <p><strong>업체명</strong><br />MEKA LABS</p>
+            <p><strong>이메일</strong><br />your@email.com</p>
+            <p><strong>연락처</strong><br />010-0000-0000</p>
+          </div>
+          <div class="contact-form">
+            <h3>작업 문의하기</h3>
+            <form>
+              <input type="text" placeholder="이름" />
+              <input type="text" placeholder="연락처" />
+              <input type="email" placeholder="이메일" />
+              <textarea placeholder="문의 내용을 입력해 주세요."></textarea>
+              <button type="button" class="btn btn-primary">문의 보내기</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>
+        <div class="footer-title">MEKA LABS</div>
+        <div>설계 외주 · 3D 프린팅 서비스</div>
+      </div>
+      <div>
+        <div>전화번호 / 이메일 / 주소 / 사업자등록번호</div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
