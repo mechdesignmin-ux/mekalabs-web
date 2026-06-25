@@ -478,6 +478,13 @@
   color: white;
   font-size: 12px;
 }
+    .portfolio-comment {
+  margin: 12px 16px 0;
+  min-height: 42px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
   </style>
 </head>
 <body>
@@ -664,6 +671,9 @@
 
   <div class="portfolio-page" id="parts-slide-count">1 / 11</div>
 </div>
+            <p class="portfolio-comment" id="parts-slide-comment">
+  첫 번째 작업물 설명
+</p>
             <div class="portfolio-body">
               <h4>부품 설계</h4>
               <p>실체 제작과 조립을 고려한 부품 설계 작업</p>
@@ -755,19 +765,63 @@
         });
     });
   </script>
- <script>
+<script>
   const partsImages = [
-    { src: "IM_1.png", alt: "부품 설계 작업물 1" },
-    { src: "IM_2.png", alt: "부품 설계 작업물 2" },
-    { src: "IM_3.png", alt: "부품 설계 작업물 3" },
-    { src: "IM_4.png", alt: "부품 설계 작업물 4" },
-    { src: "IM_5.png", alt: "부품 설계 작업물 5" },
-    { src: "IM_6.png", alt: "부품 설계 작업물 6" },
-    { src: "IM_7.png", alt: "부품 설계 작업물 7" },
-    { src: "IM_8.png", alt: "부품 설계 작업물 8" },
-    { src: "IM_9.png", alt: "부품 설계 작업물 9" },
-    { src: "IM_10.png", alt: "부품 설계 작업물 10" },
-    { src: "IM_11.png", alt: "부품 설계 작업물 11" }
+    {
+      src: "IM_1.png",
+      alt: "부품 설계 작업물 1",
+      comment: "산업용 기어박스 하우징 복잡 형상을 반영한 산업용 하우징 3D설계 및 목업 제작"
+    },
+    {
+      src: "IM_2.png",
+      alt: "부품 설계 작업물 2",
+      comment: "J사 호환 차량용 방향제하이엔드 차량용 방향제 호환  3D 설계 및 목업"
+    },
+    {
+      src: "IM_3.png",
+      alt: "부품 설계 작업물 3",
+      comment: "기독교 램프의뢰사 아이덴티티를 적용한  기독교 램프 굿즈 3D 설계 및 목업"
+    },
+    {
+      src: "IM_4.png",
+      alt: "부품 설계 작업물 4",
+      comment: "기독교 탁상 시계의뢰사 아이덴티티를 적용한  기독교 탁상 시계 굿즈 3D 설계 및 목업"
+    },
+    {
+      src: "IM_5.png",
+      alt: "부품 설계 작업물 5",
+      comment: "국내 자동차 납품용 소화기국내 완성차 납품용 소화기 3D 설계 및 목업"
+    },
+    {
+      src: "IM_6.png",
+      alt: "부품 설계 작업물 6",
+      comment: "헬리콥터 축소 목업기체 외형과 회전부 구조를 반영한 3D 설계 및 목업 제작."
+    },
+    {
+      src: "IM_7.png",
+      alt: "부품 설계 작업물 7",
+      comment: "화장품 전시 오브제해외 유명 기업 쇼업용 오브제 3D  설계 및 목업"
+    },
+    {
+      src: "IM_8.png",
+      alt: "부품 설계 작업물 8",
+      comment: "기계 결합용 체결 링정밀 체결 구조를 반영한 3D 설계"
+    },
+    {
+      src: "IM_9.png",
+      alt: "부품 설계 작업물 9",
+      comment: "두피 마사지 헤어드라이어두피 마사지 기능을 결합한 헤어드라이어 3D 설계 및 목업 제작"
+    },
+    {
+      src: "IM_10.png",
+      alt: "부품 설계 작업물 10",
+      comment: "A사 3-in-1 멀티 거치대다기기 거치를 고려한 3D 설계 및 목업 제작"
+    },
+    {
+      src: "IM_11.png",
+      alt: "부품 설계 작업물 11",
+      comment: "플렉시블 레저용 물통제품 기획부터 3D 설계, 목업 제작까지 일괄 수행한 턴키 개발"
+    }
   ];
 
   let partsImageIndex = 0;
@@ -780,8 +834,12 @@
 
     document.getElementById("parts-slide-image").src = currentImage.src;
     document.getElementById("parts-slide-image").alt = currentImage.alt;
+
     document.getElementById("parts-slide-count").textContent =
       `${partsImageIndex + 1} / ${partsImages.length}`;
+
+    document.getElementById("parts-slide-comment").textContent =
+      currentImage.comment;
   }
 </script>
 </body>
