@@ -755,5 +755,28 @@
         });
     });
   </script>
+  <script>
+  const partsImages = [
+    { src: "IM_1.png", alt: "부품 설계 작업물 1" },
+    { src: "IM_2.png", alt: "부품 설계 작업물 2" },
+    { src: "IM_3.png", alt: "부품 설계 작업물 3" },
+    { src: "IM_4.png", alt: "부품 설계 작업물 4" },
+    { src: "IM_5.png", alt: "부품 설계 작업물 5" }
+  ];
+
+  let partsImageIndex = 0;
+
+  function changePartsSlide(direction) {
+    partsImageIndex =
+      (partsImageIndex + direction + partsImages.length) % partsImages.length;
+
+    const currentImage = partsImages[partsImageIndex];
+
+    document.getElementById("parts-slide-image").src = currentImage.src;
+    document.getElementById("parts-slide-image").alt = currentImage.alt;
+    document.getElementById("parts-slide-count").textContent =
+      `${partsImageIndex + 1} / ${partsImages.length}`;
+  }
+</script>
 </body>
 </html>
