@@ -487,12 +487,27 @@
   white-space: pre-line;
   text-align: center;
 }
+    .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-right: 8px;
+}
   </style>
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
   <header>
     <div class="container nav">
-      <div class="logo">MEKA LABS</div>
+      <div class="logo">
+  <img src="logo.png" alt="MEKA LABS 로고" class="header-logo">
+  <span>MEKA LABS</span>
+</div>
       <nav class="menu">
         <a href="#home">HOME</a>
         <a href="#about">ABOUT</a>
